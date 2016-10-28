@@ -1,0 +1,7 @@
+# Compiled Object files
+*.o
+
+# Elf binaries
+*.elf
+
+archx86
