@@ -14,7 +14,7 @@ int kmain()
         print("\n$> ");
 
         string ch = readStr();
-        print(ch);
+        
         if(strEql(ch,"cmd"))
         {
             print("\nYou are allready in cmd\n");
