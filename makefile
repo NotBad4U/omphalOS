@@ -55,6 +55,7 @@ header:
 
 clean:
 	@rm -rf $(OBJ_PATH)*.o
+	@rm -f $(OS_NAME).iso
 
 mrproper: clean
 	@rm -rf $(BIN_PATH)
