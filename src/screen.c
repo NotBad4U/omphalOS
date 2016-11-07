@@ -1,6 +1,6 @@
 #include "screen.h"
 
-int cursorX = 0, cursorY = 0;
+int cursorX = 0, cursorY = 8;
 const uint8 sw = 80,sh = 25,sd = 2;
 
 void clearLine(uint8 from,uint8 to)
