@@ -15,7 +15,7 @@ LINKER = ld
 EMULATOR = qemu-system-i386
 
 ASFLAGS = -f elf32
-CFLAGS = -m32 -ffreestanding
+CFLAGS = -m32 -Wall -ffreestanding
 LDFLAGS= -m elf_i386 -T $(SRC_PATH)link.ld
 EMULATOR_FLAGS = -kernel
 
