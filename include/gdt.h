@@ -1,5 +1,5 @@
-#ifndef IDT_H
-#define IDT_H
+#ifndef GDT_H
+#define GDT_H
 
 #define GDTSIZE		0xFF	    /* nb max of descriptors in a table */
 #define GDTBASE		0x00000800	/* physical address of the gdt */
@@ -26,9 +26,16 @@ struct gdtdesc {
     uint8 base24_31;
 } __attribute__ ((packed));
 
+void initGdt(void);
 
 void init_gdt_desc(uint32 base, uint32 limite, uint8 acces, uint8 other, struct gdtdesc *desc);
 
-void init_gdt();
+// #ifdef __GDT__
+// 	struct gdtdesc kgdt[GDTSIZE];	/* GDT */
+// 	struct gdtr kgdtr;		/* GDTR */
+// #else
+// 	extern struct gdtdesc kgdt[GDTSIZE];
+// 	extern struct gdtr kgdtr;
+// #endif
 
 #endif /* IDT_H */

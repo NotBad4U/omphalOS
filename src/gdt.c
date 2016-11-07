@@ -1,4 +1,5 @@
 #include "gdt.h"
+#include "screen.h"
 
 struct gdtdesc kgdt[GDTSIZE];	/* GDT with GDTSIZE segment */
 struct gdtr kgdtr;              /* GDTR */
@@ -17,7 +18,7 @@ void init_gdt_desc(uint32 base, uint32 limite, uint8 acces, uint8 other, struct 
 }
 
 
-void init_gdt()
+void initGdt(void)
 {
     init_gdt_desc(0x0, 0x0, 0x0, 0x0, &kgdt[0]);
     init_gdt_desc(0x0, 0xFFFFF, 0x9B, 0x0D, &kgdt[1]);      /* code */
@@ -27,7 +28,7 @@ void init_gdt()
     kgdtr.limite = GDTSIZE * 8;
     kgdtr.base = GDTBASE;
 
-    memory_copy((char *) kgdtr.base, (char *) kgdt, kgdtr.limite);
+    memcpy((char *) kgdtr.base, (char *) kgdt, kgdtr.limite);
 
     asm("lgdtl (kgdtr)");
 
@@ -37,5 +38,7 @@ void init_gdt()
        movw %ax, %fs       \n \
        movw %ax, %gs       \n \
        ljmp $0x08, $next   \n \
-       next:		\n");
+       next:               \n");
+
+    return;
 }
