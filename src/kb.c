@@ -1,17 +1,15 @@
-
 #include "kb.h"
 string readStr()
 {
-    char buff;
     string buffstr;
     uint8 i = 0;
     uint8 reading = 1;
     while(reading)
     {
-        if(inportb(0x64) & 0x1)                 
+        if(inportb(PS2_STATUS_REGISTER) & 0x1)
         {
-            switch(inportb(0x60))
-            { 
+            switch(inportb(PS2_DATA_PORT))
+            {
       /*case 1:
                 printch('(char)27);           Escape button
                 buffstr[i] = (char)27;
@@ -218,12 +216,12 @@ string readStr()
                 buffstr[i] = (char)44;
                 i++;
                 break;
-     /* case 42:                                 Left shift 
+     /* case 42:                                 Left shift
                 printch('q');
                 buffstr[i] = 'q';
                 i++;
                 break;
-        case 43:                                 \ (< for somekeyboards)   
+        case 43:                                 \ (< for somekeyboards)
                 printch((char)92);
                 buffstr[i] = 'q';
                 i++;
@@ -247,52 +245,52 @@ string readStr()
                 printch('v');
                 buffstr[i] = 'v';
                 i++;
-                break;                
+                break;
         case 48:
                 printch('b');
                 buffstr[i] = 'b';
                 i++;
-                break;               
+                break;
         case 49:
                 printch('n');
                 buffstr[i] = 'n';
                 i++;
-                break;                
+                break;
         case 50:
                 printch('m');
                 buffstr[i] = 'm';
                 i++;
-                break;               
+                break;
         case 51:
                 printch(',');
                 buffstr[i] = ',';
                 i++;
-                break;                
+                break;
         case 52:
                 printch('.');
                 buffstr[i] = '.';
                 i++;
-                break;            
+                break;
         case 53:
                 printch('/');
                 buffstr[i] = '/';
                 i++;
-                break;            
+                break;
         case 54:
                 printch('.');
                 buffstr[i] = '.';
                 i++;
-                break;            
+                break;
         case 55:
                 printch('/');
                 buffstr[i] = '/';
                 i++;
-                break;            
+                break;
       /*case 56:
                 printch(' ');           Right shift
                 buffstr[i] = ' ';
                 i++;
-                break;*/           
+                break;*/
         case 57:
                 printch(' ');
                 buffstr[i] = ' ';
@@ -301,6 +299,6 @@ string readStr()
             }
         }
     }
-    buffstr[i] = 0;                
+    buffstr[i] = 0;
     return buffstr;
 }
