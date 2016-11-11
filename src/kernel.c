@@ -5,8 +5,12 @@
 
 int kmain()
 {
-    isr_install();
+    isrInstall();
+    print("OMPHALOS : idt etablished\n");
+    initPic();
+    print("OMPHALOS : pic etablished\n");
     initGdt();
+    print("OMPHALOS : gdt reloaded\n");
 
     print("Welcome to omphalOS operating system\nPlease enter a command\n");
 
